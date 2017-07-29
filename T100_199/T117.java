@@ -1,36 +1,34 @@
 package T100_199;
+import java.lang.Math;
 
 public class T117 {
 	public void connect(TreeLinkNode root) {
-        TreeLinkNode dummyHead = new TreeLinkNode(0);
-        TreeLinkNode pre = dummyHead;
-        
-        while (root != null) {
-    	    if (root.left != null) {
-    		    pre.next = root.left;
-    		    pre = pre.next;
-    	    }
-    	    if (root.right != null) {
-    		    pre.next = root.right;
-    		    pre = pre.next;
-    	    }
-    	    root = root.next;
-    	    if (root == null) {
-    		    pre = dummyHead;
-    		    root = dummyHead.next;
-    		    dummyHead.next = null;
-    	    }
+        while(root != null){
+            TreeLinkNode dummy = new TreeLinkNode(0);
+            TreeLinkNode curr = dummy;
+            while(root != null){
+                if(root.left != null) {
+                    curr.next = root.left;
+                    curr = curr.next;
+                }
+                if(root.right != null) {
+                    curr.next = root.right; 
+                    curr = curr.next;
+                }
+                root = root.next;
+            }
+            root = dummy.next;
         }
     }
-	private class TreeLinkNode{
-		int val;
-		TreeLinkNode left;
-		TreeLinkNode right;
-		TreeLinkNode next;
-		TreeLinkNode(int x) { val = x; }
-	}
+	
 }
 
 
-
+class TreeLinkNode{
+	int val;
+	TreeLinkNode left;
+	TreeLinkNode right;
+	TreeLinkNode next;
+	TreeLinkNode(int x) { val = x; }
+}
 

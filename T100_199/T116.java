@@ -1,5 +1,4 @@
 package T100_199;
-import java.util.*;
 
 public class T116 {
 	public void connect(TreeLinkNode root) {
@@ -23,8 +22,3 @@ public class T116 {
 }
 
 
-class TreeLinkNode{
-	TreeLinkNode left;
-	TreeLinkNode right;
-	TreeLinkNode next;
-}

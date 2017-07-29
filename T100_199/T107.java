@@ -2,7 +2,7 @@ package T100_199;
 import java.util.*;
 public class T107 {
 	public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> res = new LinkedList<>();
         if(root == null)
             return res;
         Queue<TreeNode> queue = new LinkedList<>();
