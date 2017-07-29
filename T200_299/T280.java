@@ -3,7 +3,7 @@ package T200_299;
 public class T280 {
 	public void wiggleSort(int[] nums) {
         for (int i = 0; i < nums.length - 1; i++) {
-            if ((i % 2 == 0) == (nums[i] > nums[i + 1])) {
+            if ((i % 2 == 0) == (nums[i] > nums[i + 1])) {      // swap illegal ones
                 swap(nums, i, i + 1);
             }
         }
