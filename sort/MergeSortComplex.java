@@ -2,7 +2,7 @@ package sort;
 
 import java.util.*;
 
-public class ZMergeSortComplex{
+public class MergeSortComplex{
     public static void main(String[] args){
         int[] a = {2, 6, 3, 5, 1};
         mergeSort(a);

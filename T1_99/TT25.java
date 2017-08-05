@@ -2,8 +2,8 @@ package T1_99;
 
 public class TT25 {
 	public ListNode reverseKGroup(ListNode head, int k) {
-        if(head == null)
-            return null;
+        if(head == null || k <= 1)
+            return head;
         ListNode curr = head;
         // base case check
         for(int i = 0; i < k - 1; i++){
@@ -11,18 +11,22 @@ public class TT25 {
             if(curr == null)
                 return head;
         }
-        if(k <= 1) 
-            return head;
-        ListNode pre = null, current = head, next = head.next;
-        for(int i = 0; i < k; i++){
-            current.next = pre;
-            pre = current;
-            current = next;
-            if(current != null)
-                next = current.next;
-        }
-        head.next = reverseKGroup(current, k);
-        return pre;
         
+        ListNode nextGroup = curr.next;
+        curr.next = null;
+        ListNode res = reverse(head);
+        head.next = reverseKGroup(nextGroup, k);
+        return res;
+    }
+    
+    private ListNode reverse(ListNode head){
+        ListNode pre = null, curr = head;
+        while(curr != null){
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
     }
 }

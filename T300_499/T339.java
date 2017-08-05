@@ -4,22 +4,18 @@ import java.util.List;
 
 public class T339 {
 	public int depthSum(List<NestedInteger> nestedList) {
-        if(nestedList == null || nestedList.size() == 0){
+        if(nestedList == null || nestedList.size() == 0)
             return 0;
-        }
-        
-        return helper(nestedList, 1);
+        return depthSum(nestedList, 1);
     }
     
-    private int helper(List<NestedInteger> nestedList, int depth){
+    private int depthSum(List<NestedInteger> nestedList, int depth){
         int res = 0;
         for(NestedInteger item : nestedList){
-            if(item.isInteger()){
-                res += item.getInteger() * depth;
-            }
-            else{
-                res += (helper(item.getList(), depth + 1));
-            }
+            if(item.isInteger()) 
+            	res += (item.getInteger() * depth);
+            else 
+            	res += depthSum(item.getList(), depth + 1);
         }
         return res;
     }

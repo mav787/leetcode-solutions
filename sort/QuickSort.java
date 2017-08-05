@@ -14,42 +14,26 @@ public class QuickSort {
     	quickSort(arr, 0, arr.length - 1);
     }
  
-    public static void quickSort(int[] arr, int low, int high) {
-        if (arr == null || arr.length == 0)
-            return;
- 
-        if (low >= high)
-            return;
- 
-        // pick the pivot
-        int middle = low + (high - low) / 2;
-        int pivot = arr[middle];        			// pivot is only a value here... 
- 
-        // make left < pivot and right > pivot
-        int i = low, j = high;
-        while (i <= j) {
-            while (arr[i] < pivot) {
-                i++;
-            }
- 
-            while (arr[j] > pivot) {
-                j--;
-            }
- 
-            if (i <= j) {
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-                i++;
-                j--;
-            }
-        }
- 
-        // recursively sort two sub parts
-        if (j > low)
-            quickSort(arr, low, j);
- 
-        if (high > i)
-            quickSort(arr, i, high);
+    private static void quickSort(int[] arr, int left, int right){
+    	if(left >= right)
+    		return;
+    	int pivot = arr[right];
+    	int curr = left;
+    	for(int i = left; i < right; i++){
+    		if(arr[i] < pivot){
+    			swap(arr, i, curr);
+    			curr++;
+    		}
+    	}
+    	
+    	swap(arr, curr, right);
+    	quickSort(arr, left, curr - 1);
+    	quickSort(arr, curr + 1, right);
+    }
+
+    private static void swap(int[] arr, int i, int j){
+    	int temp = arr[i];
+    	arr[i] = arr[j];
+    	arr[j] = temp;
     }
 }
