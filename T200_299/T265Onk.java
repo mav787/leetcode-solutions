@@ -4,19 +4,19 @@ public class T265Onk {
 	public int minCostII(int[][] costs) {
         if (costs == null || costs.length == 0) 
             return 0;
-        int n = costs.length, k = costs[0].length;
+        int m = costs.length, n = costs[0].length;
         
         // min1 is the index of the 1st-smallest cost till previous house
         // min2 is the index of the 2nd-smallest cost till previous house
         
         int min1 = -1, min2 = -1;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < m; i++) {
         	// store the prevMin index
             int last1 = min1, last2 = min2;
             // reset currMin index
             min1 = -1; min2 = -1;
             
-            for (int j = 0; j < k; j++) {
+            for (int j = 0; j < n; j++) {
                 if (j != last1) {
                     // current color j is different to last min1
                     costs[i][j] += last1 < 0 ? 0 : costs[i - 1][last1];
@@ -33,6 +33,6 @@ public class T265Onk {
                 }
             }
         }
-        return costs[n - 1][min1];
+        return costs[m - 1][min1];
     }
 }

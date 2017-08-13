@@ -14,13 +14,13 @@ public class T5 {
     
     private void extend(String s, int left, int right){
         while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)){
-            int currLen = right - left + 1;
-            if(currLen > maxLen){
-                maxLen = currLen;
-                startIndex = left;
-            }
             left--;
             right++;
+        }
+        int currLen = right - left - 1;
+        if(currLen > maxLen){
+            maxLen = currLen;
+            startIndex = left + 1;
         }
     }
 }

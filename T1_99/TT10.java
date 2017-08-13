@@ -8,7 +8,7 @@ public class TT10 {
         boolean[][] dp = new boolean[m + 1][n + 1];
         dp[0][0] = true;
         for(int j = 1; j <= n; j++){
-            if(j > 1 && dp[0][j - 2] && p.charAt(j - 1) == '*')
+            if(j > 1 && dp[0][j - 2] && p.charAt(j - 1) == '*')	// no char
                 dp[0][j] = true;
         }
         
@@ -27,7 +27,7 @@ public class TT10 {
                         dp[i][j] = false;
                     else{
                         if (p.charAt(j - 2) != cs && p.charAt(j - 2) != '.') {
-                            dp[i][j] = dp[i][j - 2];
+                            dp[i][j] = dp[i][j - 2];	// no char
                         } else {
                             dp[i][j] = (dp[i][j - 1]    // one char
                                      || dp[i - 1][j]    // more chars

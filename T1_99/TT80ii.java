@@ -2,10 +2,14 @@ package T1_99;
 
 public class TT80ii {
 	public int removeDuplicates(int[] nums) {
-		   int i = 0;
-		   for (int n : nums)
-		      if (i < 2 || n > nums[i - 2])
-		         nums[i++] = n;
-		   return i;
+		if(nums == null || nums.length == 0) return 0;
+	    int curr = 0;
+		for (int i = 0; i < nums.length; i++){
+		    if (curr < 2 || nums[i] > nums[curr - 2]){
+		        nums[curr] = nums[i];
+		        curr++;
+		    }
+		}
+		return curr;
 	}
 }

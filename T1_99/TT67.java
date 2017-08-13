@@ -7,12 +7,10 @@ public class TT67 {
         int alen = a.length(), blen = b.length();
         if(alen < blen)
             return addBinary(b, a);
-        StringBuilder sb = new StringBuilder(a).reverse();
-        a = sb.toString();
-        sb = new StringBuilder(b).reverse();
-        b = sb.toString();
+        a = new StringBuilder(a).reverse().toString();
+        b = new StringBuilder(b).reverse().toString();
         // alen >= blen
-        sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         int carry = 0;
         for(int i = 0; i < alen; i++){
             int adigit = a.charAt(i) - '0';

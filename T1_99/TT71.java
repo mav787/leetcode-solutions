@@ -7,8 +7,7 @@ public class TT71 {
             return "";
         Stack<String> stack = new Stack<>();
         String[] sa = path.split("/");
-        for(int i = 0; i < sa.length; i++){
-            String  s = sa[i];
+        for(String s : sa){
             if(!stack.isEmpty() && s.equals("..")){
                 stack.pop();
             }

@@ -1,26 +1,25 @@
 package T1_99;
 
 public class TT42 {
-	public int trap(int[] heights){
-		if(heights == null || heights.length < 3)
-            return 0;
-        int left = 0;
-        int right = heights.length - 1;
-        int max = 0;
-        int leftmax = 0;
-        int rightmax = 0;
-        while(left <= right){
-            leftmax = Math.max(leftmax, heights[left]);
-            rightmax = Math.max(rightmax, heights[right]);
-            if(leftmax < rightmax){
-                max += (leftmax - heights[left]); // leftmax is smaller than rightmax, so the (leftmax-A[a]) water can be stored
-                left++;
+	public int trap(int[] height) {
+        if(height == null || height.length < 2) return 0;
+        int left = height[0], right = height[height.length - 1];
+        int i = 0, j = height.length - 1;
+        int res = 0;
+        
+        while(i <= j){
+            left = Math.max(left, height[i]);
+            right = Math.max(right, height[j]);
+            
+            if(left < right){
+                res += left - height[i];
+                i++;
             }
             else{
-                max += (rightmax - heights[right]);
-                right--;
+                res += right - height[j];
+                j--;
             }
         }
-        return max;
+        return res;
     }
 }

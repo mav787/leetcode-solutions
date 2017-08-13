@@ -11,10 +11,12 @@ public class T404BFS {
         
         while(!queue.isEmpty()) {
             TreeNode curr = queue.poll();
-
-            if(curr.left != null && curr.left.left == null && curr.left.right == null) res += curr.left.val;
-            if(curr.left != null) queue.offer(curr.left);
-            if(curr.right != null) queue.offer(curr.right);
+            if(curr.left != null && curr.left.left == null && curr.left.right == null) 
+            	res += curr.left.val;
+            if(curr.left != null) 
+            	queue.offer(curr.left);
+            if(curr.right != null) 
+            	queue.offer(curr.right);
         }
         return res;
     }

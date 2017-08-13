@@ -27,10 +27,10 @@ public class T211 {
     public boolean search(String word) {
         if(word == null)
             return false;
-        return search(word, 0, root);
+        return backtrack(word, 0, root);
     }
     
-    private boolean search(String word, int strIndex, TrieNode node){
+    private boolean backtrack(String word, int strIndex, TrieNode node){
         if(node == null)
             return false;
         if(strIndex == word.length()){
@@ -38,16 +38,15 @@ public class T211 {
         }
         if(word.charAt(strIndex) == '.'){
             for(int i = 0; i < 26; i++){
-                if(search(word, strIndex + 1, node.sons[i]))
+                if(backtrack(word, strIndex + 1, node.sons[i]))
                     return true;
             }
             return false;
         }
         else{
             int index = word.charAt(strIndex) - 'a';
-            return search(word, strIndex + 1, node.sons[index]);
+            return backtrack(word, strIndex + 1, node.sons[index]);
         }
-        
     }
 }
 

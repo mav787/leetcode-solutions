@@ -1,5 +1,4 @@
 package T1_99;
-
 public class TT21 {
 	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
@@ -22,6 +21,5 @@ public class TT21 {
             curr.next = q;
         }
         return dummy.next;
-        
     }
 }

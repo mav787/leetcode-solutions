@@ -15,10 +15,12 @@ public class T229 {
     		else if (count1 == 0) {
     			num1 = nums[i];
     			count1 = 1;
-    		} else if (count2 == 0) {
+    		} 
+    		else if (count2 == 0) {
     			num2 = nums[i];
     			count2 = 1;
-    		} else {
+    		} 
+    		else {
     			count1--;
     			count2--;
     		}

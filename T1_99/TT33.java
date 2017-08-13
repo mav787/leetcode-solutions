@@ -7,14 +7,15 @@ public class TT33 {
         int left = 0, right = nums.length - 1;
         while(left + 1 < right){
             int mid = left + (right - left) / 2;
-            if(nums[mid] > nums[left]){
+            if(nums[mid] > nums[left]){			// comparing nums[mid] against nums[left]
                 if(nums[left] <= target && target <= nums[mid])
                     right = mid;
                 else
                     left = mid;
             }
-            else{
+            else{								// nums[mid] <= nums[left]
                 if(nums[mid] <= target && target <= nums[right])
+             // if(nums[mid] <= target && target < nums[left]
                     left = mid;
                 else
                     right = mid;
