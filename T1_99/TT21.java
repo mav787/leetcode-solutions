@@ -1,25 +1,24 @@
 package T1_99;
 public class TT21 {
 	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
         ListNode dummy = new ListNode(0);
-        ListNode p = l1, q = l2, curr = dummy;
-        while(p != null && q != null){
-            if(p.val < q.val){
-                curr.next = p;
-                p = p.next;
+        ListNode curr = dummy;
+        while(l1 != null && l2 != null){
+            if(l1.val < l2.val){
+                curr.next = l1;
+                l1 = l1.next;
             }
             else{
-                curr.next = q;
-                q = q.next;
+                curr.next = l2;
+                l2 = l2.next;
             }
             curr = curr.next;
         }
-        if(p != null){
-            curr.next = p;
-        }
-        if(q != null){
-            curr.next = q;
-        }
+        
+        if(l1 == null) curr.next = l2;
+        else if(l2 == null) curr.next = l1;
         return dummy.next;
     }
 }

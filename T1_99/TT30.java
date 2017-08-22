@@ -13,12 +13,12 @@ public class TT30 {
         
         Map<String, Integer> map = new HashMap<String, Integer>(); // map for words
         for (String w : words) 
-        	map.put(w, map.containsKey(w) ? map.get(w) + 1 : 1);
+        	map.put(w, map.getOrDefault(w, 0) + 1);
         
-        for (int i = 0; i <= s.length() - len * words.length; i++) {
+        for (int i = 0; i <= s.length() - len * words.length; i++) {		// starting points
             Map<String, Integer> copy = new HashMap<String, Integer>(map);
             for (int j = 0; j < words.length; j++) { // check if match
-                String str = s.substring(i + j*len, i + j*len + len); // next word
+                String str = s.substring(i + j * len, i + j * len + len); // next word
                 if (copy.containsKey(str)) { // is in remaining words
                     int count = copy.get(str);
                     if (count == 1) 

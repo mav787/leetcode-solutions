@@ -3,7 +3,7 @@ package T1_99;
 public class TT25NonRecur {
 	public ListNode reverseKGroup(ListNode head, int k) {
 	    ListNode begin;
-	    if (head==null || head.next ==null || k==1)
+	    if (head == null || head.next == null || k == 1)
 	    	return head;
 	    ListNode dummy = new ListNode(0);
 	    dummy.next = head;
@@ -23,17 +23,16 @@ public class TT25NonRecur {
 	}
 
 	public ListNode reverse(ListNode begin, ListNode end){
-		ListNode curr = begin.next;
-		ListNode next, first;
-		ListNode prev = begin;
-		first = curr;
+		ListNode pre = begin, curr = begin.next;
+		ListNode first = curr;
+		
 		while (curr != end){
-			next = curr.next;
-			curr.next = prev;
-			prev = curr;
+			ListNode next = curr.next;
+			curr.next = pre;
+			pre = curr;
 			curr = next;
 		}
-		begin.next = prev;
+		begin.next = pre;
 		first.next = curr;
 		return first;
 	}

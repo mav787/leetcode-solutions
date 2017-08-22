@@ -17,15 +17,27 @@ public class TT35 {
         
         if(nums[right] == target)
             return right;
-        else if(nums[left] == target)
+        if(nums[left] == target)
             return left;
-        else {
-            if(nums[right] < target)
-                return right + 1;
-            else if(nums[left] < target && target < nums[right])
-                return right;
-            else
-                return left;
-        }
+        
+        if(nums[right] < target)
+            return right + 1;
+        if(nums[left] < target)
+            return left + 1;
+        return left;
+        
+//        if(nums[right] == target)
+//            return right;
+//        else if(nums[left] == target)
+//            return left;
+//        
+//        else {
+//            if(nums[right] < target)
+//                return right + 1;
+//            else if(nums[left] < target && target < nums[right])
+//                return right;
+//            else
+//                return left;
+//        }
     }
 }

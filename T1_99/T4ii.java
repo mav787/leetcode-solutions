@@ -6,35 +6,33 @@ public class T4ii {
         int n = nums2.length;
         int k = m + n;
         
-        if((k & 1) == 1)
-        {
+        if((k & 1) == 1){
             return find(nums1, 0, m, nums2, 0, n, k / 2 + 1);
-        }else
+        }
+        else{
             return (find(nums1, 0, m, nums2, 0, n, k / 2) + find(nums1, 0, m, nums2, 0, n, k / 2 + 1)) / 2;
+        }
     }
-    public double find(int[] A, int aStart, int alength, int[] B, int bStart, int blength,int kth)
-    {
+    public double find(int[] A, int aStart, int alength, int[] B, int bStart, int blength,int kth){
         if(alength > blength)
-        return find(B, bStart, blength, A, aStart, alength, kth);
+        	return find(B, bStart, blength, A, aStart, alength, kth);
         if(alength == 0)
-        return B[bStart + kth - 1];
+        	return B[bStart + kth - 1];
         if (kth == 1)
-        return min(B[bStart], A[aStart]);
+        	return min(B[bStart], A[aStart]);
         int p = kth / 2;
         int q = kth - p;
-        if(alength < p)
-        {
+        if(alength < p){
             p = alength;
             q = kth - p;
         }
         if(A[aStart + p - 1] > B[bStart + q - 1])
-        return find(A, aStart, alength, B, bStart + q, blength - q, kth - q);
+        	return find(A, aStart, alength, B, bStart + q, blength - q, kth - q);
         else
-        return find(A, aStart + p, alength - p, B, bStart, blength, kth - p);
+        	return find(A, aStart + p, alength - p, B, bStart, blength, kth - p);
         
     }
-    public int min(int a, int b)
-    {
+    public int min(int a, int b) {
         return a > b ? b : a;
     }
 

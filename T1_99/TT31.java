@@ -22,6 +22,7 @@ public class TT31 {
             }
             swap(nums, index, find - 1);
         }
+        
         reverse(nums, find);
     }
     
