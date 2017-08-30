@@ -15,9 +15,10 @@ public class TT72 {
                     dp[i][j] = i;
                 else{
                     if(word1.charAt(i - 1) == word2.charAt(j - 1)){
-                        dp[i][j] = dp[i - 1][j - 1];
+                        dp[i][j] = dp[i - 1][j - 1];    // no mutation required
                     }
                     else{
+                        //  replace || insert || delete
                         dp[i][j] = Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1])) + 1;
                     }
                 }

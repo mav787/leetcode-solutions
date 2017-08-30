@@ -16,9 +16,6 @@ public class TT41My {
                     swap(nums, i, nums[i] - 1);
                     i--;
                 }
-                // else{
-                //     continue;
-                // }
             }
         }
         for(int i = 0; i < len; i++){

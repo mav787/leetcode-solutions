@@ -11,8 +11,7 @@ public class T139 {
         dp[0] = true;
         for(int i = 1; i <= s.length(); i++){
             for(int j = 0; j < i; j++){
-                String sub = s.substring(j, i);
-                if(dp[j] && set.contains(sub)){
+                if(dp[j] && set.contains(s.substring(j, i))){
                     dp[i] = true;
                     break;
                 }

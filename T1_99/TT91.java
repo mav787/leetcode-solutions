@@ -8,7 +8,7 @@ public class TT91 {
         int n = s.length();
         int[] dp = new int[n + 1];
         dp[0] = 1;
-        dp[1] = s.charAt(0) == '0'? 0 : 1;
+        dp[1] = s.charAt(0) == '0' ? 0 : 1;
         for(int i = 2; i <= n; i++) {
             int first = Integer.valueOf(s.substring(i - 1, i));
             int second = Integer.valueOf(s.substring(i - 2, i));
