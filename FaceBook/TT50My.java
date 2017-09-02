@@ -2,29 +2,16 @@ package FaceBook;
 
 public class TT50My {
 	public double myPow(double x, int n) {
-        return myPow(x, (long)n);
-    }
-    
-    private double myPow(double x, long n){
+		if(x == 0) return 0;
+        if(n == 0) return 1;
         
-        if(n == 0)
-            return 1.0;
-        
-        boolean isNegativeN = n < 0;
-        if(isNegativeN)
-            n = -n;
-        double inter = x;
-        long curr = 1;
-        while(curr << 1 <= n){
-            inter = inter * inter;
-            curr <<= 1;
+        if(n > 0){
+            if(n % 2 == 0) return myPow(x * x, n / 2);
+            else return x * myPow(x * x, n / 2);
         }
-        
-        if(curr == n){
-            return isNegativeN ? 1.0 / inter : inter;    
+        else{
+            if(n % 2 == 0) return myPow(x * x, n / 2);
+            else return 1 / x * myPow(x * x, n / 2);
         }
-        
-        double rest = myPow(x, n - curr);
-        return isNegativeN? 1.0 / (inter * rest) : inter * rest;
     }
 }

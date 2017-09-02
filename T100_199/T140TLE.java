@@ -12,12 +12,13 @@ public class T140TLE {
     }
     
     private void backtrack(List<String> res, StringBuilder sb, String s, Set<String> dict, int start){
-        int len = sb.length();
+        
         if(start == s.length()){
             res.add(sb.toString());
             return;
         }
         
+        int len = sb.length();
         for(int i = start; i <= s.length(); i++){
             String item = s.substring(start, i);
             if(dict.contains(item)){

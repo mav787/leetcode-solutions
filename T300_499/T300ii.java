@@ -7,9 +7,11 @@ public class T300ii {
 
         for(int x : nums) {
             int i = Arrays.binarySearch(dp, 0, len, x);
-            if(i < 0) i = -(i + 1);
+            if(i < 0) 
+            	i = -(i + 1);
             dp[i] = x;
-            if(i == len) len++;
+            if(i == len) 
+            	len++;
         }
         return len;
     }

@@ -20,3 +20,7 @@ public class T139 {
         return dp[s.length()];
     }
 }
+
+class Test{
+	
+}

@@ -15,7 +15,9 @@ public class T300iii {
 	                j = m;
 	        }
 	        tails[i] = x;
-	        if (i == size) ++size;
+	        if (i == size) {
+	        	size++;
+	        }
 	    }
 	    return size;
 	}

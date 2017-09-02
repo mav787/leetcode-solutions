@@ -3,9 +3,9 @@ package T100_199;
 public class T188 {
     /**
      * dp[i, j] represents the max profit up until prices[j] using at most i transactions. 
-     * dp[i, j] = max(dp[i, j-1], prices[j] - prices[jj] + dp[i-1, jj]) { jj in range of [0, j-1] }
+     * dp[i, j] = max(dp[i, j - 1], prices[j] - prices[jj] + dp[i - 1, jj]) { jj in range of [0, j - 1] }
      * 				// last transaction : buy @jj & sell @j
-     *          = max(dp[i, j-1], prices[j] + max(dp[i-1, jj] - prices[jj]))
+     *          = max(dp[i, j - 1], prices[j] + max(dp[i - 1, jj] - prices[jj]))
      * dp[0, j] = 0; 0 transactions makes 0 profit
      * dp[i, 0] = 0; if there is only one price data point you can't make any transaction.
      */
@@ -16,11 +16,11 @@ public class T188 {
     		return 0;
     	
     	//if k >= n/2, then you can make maximum number of transactions.
-    	if (k >=  n/2) {
+    	if (k >=  n / 2) {
     		int maxPro = 0;
     		for (int i = 1; i < n; i++) {
-    			if (prices[i] > prices[i-1]){
-    				maxPro += prices[i] - prices[i-1];
+    			if (prices[i] > prices[i - 1]){
+    				maxPro += prices[i] - prices[i - 1];
     			}
     		}
     		return maxPro;
