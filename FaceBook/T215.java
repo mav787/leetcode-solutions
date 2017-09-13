@@ -2,37 +2,29 @@ package FaceBook;
 
 public class T215 {
 	public int findKthLargest(int[] nums, int k) {
-    	if (nums == null || nums.length == 0) 
-    	    return Integer.MAX_VALUE;
-        return findKthLargest(nums, 0, nums.length - 1, nums.length - k);
-    }    
+        if(nums == null || nums.length == 0 || k <= 0 || k > nums.length) return Integer.MIN_VALUE;
+        return findKthSmallest(nums, 0, nums.length - 1, nums.length - k);
+    }
     
-    public int findKthLargest(int[] nums, int start, int end, int k) {// quick select: kth smallest
-    	if (start > end) 
-    	    return Integer.MAX_VALUE;
-    	
-    	int pivot = nums[end];// Take A[end] as the pivot, 
-    	int left = start;
-    	for (int i = start; i < end; i++) {
-    		if (nums[i] <= pivot) { // Put numbers < pivot to pivot's left
-    			swap(nums, left, i);
-    			left++;
-    		}
-    	}
-    	
-    	swap(nums, left, end);// Finally, swap A[end] with A[left]
-    	
-    	if (left == k)// Found kth smallest number
-    		return nums[left];
-    	else if (left < k)// Check right part
-    		return findKthLargest(nums, left + 1, end, k);
-    	else // Check left part
-    		return findKthLargest(nums, start, left - 1, k);
-    } 
+    private int findKthSmallest(int[] nums, int left, int right, int k){
+        if(left > right) return Integer.MAX_VALUE;
+        int pivot = nums[right];
+        int curr = left;
+        for(int i = left; i < right; i++){
+            if(nums[i] <= pivot){
+                swap(nums, i, curr);
+                curr++;
+            }
+        }
+        swap(nums, curr, right);
+        if(curr == k) return nums[k];
+        if(curr < k) return findKthSmallest(nums, curr + 1, right, k);
+        return findKthSmallest(nums, left, curr - 1, k);
+    }
     
-    private void swap(int[] A, int i, int j) {
-    	int tmp = A[i];
-    	A[i] = A[j];
-    	A[j] = tmp;				
+    private void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }

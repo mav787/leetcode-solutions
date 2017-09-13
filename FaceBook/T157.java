@@ -10,20 +10,21 @@ public class T157 {
         
         char[] buffer = new char[4];
         boolean endOfFile = false;
-        int readBytes = 0;
+        int curr = 0;
         
-        while (readBytes < n && !endOfFile) {
-            int currReadBytes = read4(buffer);
-            if (currReadBytes != 4) {
+        while (curr < n && !endOfFile) {
+            int readBytes = read4(buffer);
+            if (readBytes != 4) {
                 endOfFile = true;
             }
-            int length = Math.min(n - readBytes, currReadBytes);
+            int length = Math.min(n - curr, readBytes);
             for (int i = 0; i < length; i++) {
-                buf[readBytes + i] = buffer[i];
+                buf[curr + i] = buffer[i];
             }
-            readBytes += length;
+            curr += length;
         }
-        return readBytes;
+        
+        return curr;
     }
     
     int read4(char[] buf){

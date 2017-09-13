@@ -16,8 +16,7 @@ public class T127 {
         while(!queue.isEmpty()){
             String s = queue.poll();
             List<String> neighbors = getNeighbors(s, set);
-            for(int i = 0; i < neighbors.size(); i++){
-                String nei = neighbors.get(i);
+            for(String nei : neighbors){
                 if(nei.equals(endWord))
                     return map.get(s) + 1;
                 else{
@@ -39,9 +38,9 @@ public class T127 {
                 if(c == s.charAt(i))
                     continue;
                 ca[i] = c;
-                String test = String.valueOf(ca);
-                if(set.contains(test)){
-                    res.add(test);    
+                String candidate = String.valueOf(ca);
+                if(set.contains(candidate)){
+                    res.add(candidate);    
                 }
                 ca[i] = s.charAt(i);        // backtrack...
             }

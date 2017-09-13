@@ -37,10 +37,10 @@ public class MergeSortWiley {
 		int i = 0, j = 0;
 		while (i + j < S.length){
 			if (j == S2.length || (i < S1.length && S1[i] < S2[j])){
-				S[i+j] = S1[i++]; // copy ith element of S1 and increment i else
+				S[i + j] = S1[i++]; // copy ith element of S1 and increment i else
 			}
 			else{
-				S[i+j] = S2[j++]; // copy ith element of S1 and increment i else
+				S[i + j] = S2[j++]; // copy ith element of S1 and increment i else
 			}
 		}
 	}

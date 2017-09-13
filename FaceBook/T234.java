@@ -1,6 +1,6 @@
-package T200_299;
+package FaceBook;
 
-public class T234ii {
+public class T234 {
 	public boolean isPalindrome(ListNode head) {
 	    ListNode fast = head, slow = head;
 	    while (fast != null && fast.next != null) {

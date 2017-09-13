@@ -24,6 +24,7 @@ public class T257 {
             traverse(res, root.left, sb);
         }
         
+        // backtrack
         sb.setLength(len);
         if(root.right != null){
             traverse(res, root.right, sb);

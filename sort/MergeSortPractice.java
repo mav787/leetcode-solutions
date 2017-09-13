@@ -10,7 +10,7 @@ public class MergeSortPractice{
     }
 
     public static void mergeSort(int[] a){
-    	int[] tmp = new int[a.length];
+    		int[] tmp = new int[a.length];
         mergeSort(a, tmp,  0,  a.length - 1);
     }
     

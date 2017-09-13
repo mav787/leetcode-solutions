@@ -3,17 +3,14 @@ import java.util.*;
 
 public class T215Heap {
 	public int findKthLargest(int[] nums, int k) {
-        if(nums == null)
-            return -1;
-        Queue<Integer> heap = new PriorityQueue<>(k + 1);
+        if(nums == null || nums.length == 0 || k <= 0 || k > nums.length) return Integer.MIN_VALUE;
+        Queue<Integer> heap = new PriorityQueue<Integer>();
         for(int i = 0; i < nums.length; i++){
-            if(heap.size() < k)
-                heap.offer(nums[i]);
-            else{
-                heap.offer(nums[i]);
+            heap.offer(nums[i]);
+            if(heap.size() > k){
                 heap.poll();
             }
         }
-        return heap.poll();
+        return heap.peek();
     }
 }

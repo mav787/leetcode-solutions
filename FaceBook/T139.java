@@ -1,7 +1,6 @@
 package FaceBook;
 import java.util.*;
 
-
 public class T139 {
 	public boolean wordBreak(String s, List<String> wordDict) {
         if(s == null || wordDict == null || wordDict.size() == 0)

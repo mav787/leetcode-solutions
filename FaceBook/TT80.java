@@ -1,6 +1,6 @@
-package T1_99;
+package FaceBook;
 
-public class TT80ii {
+public class TT80 {
 	public int removeDuplicates(int[] nums) {
 		if(nums == null || nums.length == 0) return 0;
 	    int curr = 0;

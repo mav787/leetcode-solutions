@@ -2,7 +2,7 @@ package FaceBook;
 import java.util.*;
 
 public class T146 {		// LRU Cache
-    private class Node{
+    class Node{
         Node prev;
         Node next;
         int key;
@@ -17,7 +17,7 @@ public class T146 {		// LRU Cache
     }
 
     private int capacity;
-    private HashMap<Integer, Node> hs = new HashMap<Integer, Node>();
+    private HashMap<Integer, Node> map = new HashMap<Integer, Node>();
     private Node head = new Node(-1, -1);		// dummy
     private Node tail = new Node(-1, -1);		// dummy
 
@@ -28,40 +28,40 @@ public class T146 {		// LRU Cache
     }
 
     public int get(int key) {
-        if( !hs.containsKey(key)) {
+        if( !map.containsKey(key)) {
             return -1;
         }
 
         // remove current
-        Node current = hs.get(key);
+        Node current = map.get(key);
         current.prev.next = current.next;
         current.next.prev = current.prev;
 
         // move current to tail
-        move_to_tail(current);
+        moveToTail(current);
 
-        return hs.get(key).value;
+        return map.get(key).value;
     }
 
     public void put(int key, int value) {
         // this internal `get` method will update the key's position in the linked list.
         if (get(key) != -1) {
-            hs.get(key).value = value;
+            map.get(key).value = value;
             return;
         }
 
-        if (hs.size() == capacity) {
-            hs.remove(head.next.key);
+        if (map.size() == capacity) {
+            map.remove(head.next.key);
             head.next = head.next.next;
             head.next.prev = head;
         }
 
         Node insert = new Node(key, value);
-        hs.put(key, insert);
-        move_to_tail(insert);
+        map.put(key, insert);
+        moveToTail(insert);
     }
 
-    private void move_to_tail(Node current) {
+    private void moveToTail(Node current) {
         current.prev = tail.prev;
         tail.prev = current;
         current.prev.next = current;

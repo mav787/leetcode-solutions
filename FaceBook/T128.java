@@ -11,12 +11,14 @@ public class T128 {
         }
         int res = 0;
         for(int i = 0; i < nums.length; i++){
-            if(!set.contains(nums[i] - 1)){
-                int curr = nums[i] + 1;
+            if(!set.contains(nums[i] - 1)){     // first item
+                int count = 1;
+                int curr = nums[i] + 1;         // next item
                 while(set.contains(curr)){
+                    count++;
                     curr += 1;
                 }
-                res = Math.max(res, curr - nums[i]);
+                res = Math.max(res, count);    // count
             }
         }
         return res;

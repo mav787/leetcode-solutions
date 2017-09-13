@@ -1,38 +1,38 @@
-package T1_99;
+package FaceBook;
 import java.util.*;
 
 public class TT68 {
-	public List<String> fullJustify(String[] words, int maxWidth) {
+	public List<String> fullJustify(String[] words, int L) {
         List<String> res = new ArrayList<String>();
         int index = 0;
         
         while (index < words.length) {
-            int levelLen = words[index].length();
+            int count = words[index].length();
             int next = index + 1;
             while (next < words.length) {
-                if (words[next].length() + levelLen + 1 > maxWidth) 
+                if (words[next].length() + count + 1 > L) 
                 	break;
-                levelLen += words[next].length() + 1;
+                count += words[next].length() + 1;
                 next++;
             }
             
             StringBuilder builder = new StringBuilder();
-            int count = next - index - 1;
+            int diff = next - index - 1;
             
             
             // if last line or number of words in the line is 1, left-justified
-            if (next == words.length || count == 0) {
+            if (next == words.length || diff == 0) {
                 for (int i = index; i < next; i++) {
                     builder.append(words[i] + " ");
                 }
-                builder.setLength(builder.length() - 1);
-                for (int i = builder.length(); i < maxWidth; i++) {
+                builder.deleteCharAt(builder.length() - 1);
+                for (int i = builder.length(); i < L; i++) {
                     builder.append(" ");
                 }
             } else {
                 // middle justified
-                int spaces = (maxWidth - levelLen) / count;
-                int r = (maxWidth - levelLen) % count;
+                int spaces = (L - count) / diff;
+                int r = (L - count) % diff;
                 for (int i = index; i < next; i++) {
                     builder.append(words[i]);
                     if (i < next - 1) {
