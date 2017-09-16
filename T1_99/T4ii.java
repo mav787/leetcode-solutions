@@ -19,7 +19,7 @@ public class T4ii {
         if(alength == 0)
         	return B[bStart + kth - 1];
         if (kth == 1)
-        	return min(B[bStart], A[aStart]);
+        	return Math.min(B[bStart], A[aStart]);
         int p = kth / 2;
         int q = kth - p;
         if(alength < p){
@@ -32,8 +32,5 @@ public class T4ii {
         	return find(A, aStart + p, alength - p, B, bStart, blength, kth - p);
         
     }
-    public int min(int a, int b) {
-        return a > b ? b : a;
-    }
-
+    
 }

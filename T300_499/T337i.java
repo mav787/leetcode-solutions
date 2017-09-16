@@ -3,7 +3,7 @@ package T300_499;
 public class T337i {
 	public int rob(TreeNode root) {
         int[] res = robSub(root);
-	    return Math.max(res[0], res[1]);
+	    return Math.max(res[0], res[1]);		// [0]: exclude [1]: include
 	}
 
 	private int[] robSub(TreeNode root) {
