@@ -2,29 +2,25 @@ package FaceBook;
 
 public class TT67 {
 	public String addBinary(String a, String b) {
-        if(a == null || b == null)
-            return "";
-        int alen = a.length(), blen = b.length();
-        if(alen < blen)
-            return addBinary(b, a);
-        a = new StringBuilder(a).reverse().toString();
-        b = new StringBuilder(b).reverse().toString();
-        // alen >= blen
-        StringBuilder sb = new StringBuilder();
+        if(a == null || a.length() == 0) return b;
+        if(b == null || b.length() == 0) return a;
+        
+        StringBuilder sa = new StringBuilder(a).reverse();
+        StringBuilder sb = new StringBuilder(b).reverse();
+        
+        StringBuilder res = new StringBuilder();
         int carry = 0;
-        for(int i = 0; i < alen; i++){
-            int adigit = a.charAt(i) - '0';
-            int bdigit = i < blen ? b.charAt(i) - '0' : 0;
+        
+        for(int i = 0; i < Math.max(sa.length(), sb.length()); i++){
+            int aval = i < sa.length() ? sa.charAt(i) - '0' : 0;
+            int bval = i < sb.length() ? sb.charAt(i) - '0' : 0;
             
-            int sum = adigit + bdigit + carry;
-            int digit = sum % 2;
+            int sum = aval + bval + carry;
+            res.append(sum % 2);
             carry = sum / 2;
-            
-            sb.append(digit);
         }
         
-        if(carry != 0)
-            sb.append(carry);
-        return sb.reverse().toString();
+        if(carry != 0) res.append(carry);
+        return res.reverse().toString();
     }
 }

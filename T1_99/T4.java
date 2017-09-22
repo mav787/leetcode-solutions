@@ -12,12 +12,15 @@ public class T4 {
  
 	// get the kth element...
     private double getkth(int[] A, int aStart, int[] B, int bStart, int k) {
+        // base 1: A overflows
     	if (aStart > A.length - 1) {
     		return B[bStart + k - 1];            
     	}
+        // base 2 : B overflows
     	if (bStart > B.length - 1) {
     		return A[aStart + k - 1];                
     	}
+        // base 3 : k == 1
     	if (k == 1) {
     		return Math.min(A[aStart], B[bStart]);      // k is literally the kth...  
     	}

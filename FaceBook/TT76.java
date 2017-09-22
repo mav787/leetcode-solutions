@@ -2,39 +2,39 @@ package FaceBook;
 
 public class TT76 {
 	public String minWindow(String s, String t) {
-        if(s == null || s.isEmpty() || t == null || t.isEmpty()) 
-            return "";
-        int i = 0, j = 0;
-        int[] tmap=new int[256];
-        int[] smap=new int[256];
-        for(int k = 0; k < t.length(); k++){
-            tmap[t.charAt(k)]++;
-        }
-        int found = 0;
-        int length = Integer.MAX_VALUE;
+        if(s == null || t == null || s.length() < t.length()) return "";
+        int len = Integer.MAX_VALUE;
         String res = "";
-        while(j < s.length()){
-            if(found < t.length()){
-                if(tmap[s.charAt(j)] > 0){
-                    smap[s.charAt(j)]++;
-                    if(smap[s.charAt(j)] <= tmap[s.charAt(j)]){
-                        found++;
-                    }
+        
+        int[] smap = new int[256];
+        int[] tmap = new int[256];
+        
+        for(int i = 0; i < t.length(); i++){
+            tmap[t.charAt(i)]++;
+        }
+        
+        int left = 0, right = 0;
+        int count = 0;
+        while(right < s.length()){
+            if(count < t.length()){
+                smap[s.charAt(right)]++;
+                if(smap[s.charAt(right)] <= tmap[s.charAt(right)]){
+                    count++;
                 }
-                j++;
+                right++;
             }
-            while(found == t.length()){
-                if(j - i < length){
-                    length = j - i;
-                    res = s.substring(i,j);
+            
+            while(count == t.length()){
+                // still legal
+                if(right - left < len){
+                    len = right - left;
+                    res = s.substring(left, right);
                 }
-                if(tmap[s.charAt(i)] > 0){
-                    smap[s.charAt(i)]--;
-                    if(smap[s.charAt(i)] < tmap[s.charAt(i)]){
-                        found--;
-                    }
+                smap[s.charAt(left)]--;
+                if(smap[s.charAt(left)] < tmap[s.charAt(left)]){
+                    count--;
                 }
-                i++;
+                left++;
             }
         }
         return res;

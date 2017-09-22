@@ -8,11 +8,11 @@ public class T621 {
             dict[c - 'A']++;
         }
         Arrays.sort(dict);
-        int i = 25;
-        while(i >= 0 && dict[i] == dict[25]){
+        int i = dict.length - 1;
+        while(i >= 0 && dict[i] == dict[dict.length - 1]){
             i--;
         }
 
-        return Math.max(tasks.length, (dict[25] - 1) * (n + 1) + 25 - i);
+        return Math.max(tasks.length, (dict[dict.length - 1] - 1) * (n + 1) + dict.length - i - 1);
     }
 }

@@ -21,8 +21,6 @@ public class TT43 {
                 sb.append(i);
             }
         }
-        if(sb.length() == 0)
-            return "0";
-        return sb.toString();
+        return sb.length() == 0 ? "0" : sb.toString();
     }
 }

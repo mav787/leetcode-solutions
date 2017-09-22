@@ -2,48 +2,47 @@ package FaceBook;
 import java.util.*;
 
 public class TT68 {
-	public List<String> fullJustify(String[] words, int L) {
+	public List<String> fullJustify(String[] words, int maxWidth) {
         List<String> res = new ArrayList<String>();
-        int index = 0;
+        int curr = 0;
         
-        while (index < words.length) {
-            int count = words[index].length();
-            int next = index + 1;
-            while (next < words.length) {
-                if (words[next].length() + count + 1 > L) 
-                	break;
-                count += words[next].length() + 1;
-                next++;
+        while (curr < words.length) {
+            int len = words[curr].length();
+            int end = curr + 1;
+            while (end < words.length) {
+                if (len + 1 + words[end].length() > maxWidth) break;
+                len += words[end].length() + 1;
+                end++;
             }
             
-            StringBuilder builder = new StringBuilder();
-            int diff = next - index - 1;
+            StringBuilder sb = new StringBuilder();
+            int count = end - curr - 1;
             
-            
-            // if last line or number of words in the line is 1, left-justified
-            if (next == words.length || diff == 0) {
-                for (int i = index; i < next; i++) {
-                    builder.append(words[i] + " ");
+            // if last line or number of words in the line is 1
+            if (end == words.length || count == 0) {
+            	// left justified
+                for (int i = curr; i < end; i++) {
+                    sb.append(words[i]).append(" ");
                 }
-                builder.deleteCharAt(builder.length() - 1);
-                for (int i = builder.length(); i < L; i++) {
-                    builder.append(" ");
+                sb.setLength(sb.length() - 1);
+                for (int i = sb.length(); i < maxWidth; i++) {
+                    sb.append(" ");
                 }
             } else {
                 // middle justified
-                int spaces = (L - count) / diff;
-                int r = (L - count) % diff;
-                for (int i = index; i < next; i++) {
-                    builder.append(words[i]);
-                    if (i < next - 1) {
-                        for (int j = 0; j <= (spaces + ((i - index) < r ? 1 : 0)); j++) {
-                            builder.append(" ");
+                int spaces = (maxWidth - len) / count;
+                int rest = (maxWidth - len) % count;
+                for (int i = curr; i < end; i++) {
+                    sb.append(words[i]);
+                    if (i != end - 1) {
+                        for (int j = 0; j <= (spaces + ((i - curr) < rest ? 1 : 0)); j++) {
+                            sb.append(" ");
                         }
                     }
                 }
             }
-            res.add(builder.toString());
-            index = next;
+            curr = end;
+            res.add(sb.toString());
         }
         return res;
     }

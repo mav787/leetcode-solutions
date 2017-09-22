@@ -34,7 +34,7 @@ public class T676ii {
     }
     
     private boolean normalSearch(String s){
-        TrieNode curr = root;
+    	TrieNode curr = root;
         for(int i = 0; i < s.length(); i++){
             int index = s.charAt(i) - 'a';
             if(curr.sons[index] == null) return false;
