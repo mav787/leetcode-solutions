@@ -1,7 +1,7 @@
-package T500_699;
+package C_FaceBook;
 import java.util.*;
 
-public class T621ii {
+public class TTT621 {
 	public int leastInterval(char[] tasks, int n) {
         int[] map = new int[26];
         for (char c : tasks)
