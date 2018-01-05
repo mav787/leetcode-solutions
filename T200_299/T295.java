@@ -22,7 +22,7 @@ public class T295 {
     
     public double findMedian() {
         if(max.size() == min.size()){
-            return (max.peek() + min.peek())/2.0;
+            return (max.peek() + min.peek()) / 2.0;
         }
         else{
             return max.peek();

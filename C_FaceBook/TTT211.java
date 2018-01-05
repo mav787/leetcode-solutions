@@ -2,7 +2,6 @@ package C_FaceBook;
 
 public class TTT211 {
 	private TrieNode root;
-
     /** Initialize your data structure here. */
     public TTT211() {
         root = new TrieNode();
@@ -24,34 +23,34 @@ public class TTT211 {
     /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
     public boolean search(String word) {
         if(word == null) return false;
-        return backtrack(word, root, 0);
+        return search(word, root, 0);
     }
     
-    private boolean backtrack(String word, TrieNode root, int index){
+    private boolean search(String word, TrieNode root, int pos){
         if(root == null) return false;
-        if(index == word.length()) return root.isEnd;
-        if(word.charAt(index) == '.'){
-            // backtrack
-            for(int i = 0; i < 26; i++){
-                if(backtrack(word, root.sons[i], index + 1)){
-                    return true;
-                }
+        if(pos == word.length()){
+            return root.isEnd;
+        }
+        
+        if(word.charAt(pos) == '.'){
+            for(int i = 0; i < root.sons.length; i++){
+                if(search(word, root.sons[i], pos + 1)) return true;
             }
             return false;
         }
-        else{
-            int next = word.charAt(index) - 'a';
-            return backtrack(word, root.sons[next], index + 1);
-        }
+        
+        int index = word.charAt(pos) - 'a';
+        return search(word, root.sons[index], pos + 1);
     }
 }
 
+
 class TrieNode{
+    private static final int FANOUT = 26;
     TrieNode[] sons;
     boolean isEnd;
-    
-    TrieNode(){
-        sons = new TrieNode[26];
+    public TrieNode(){
+        sons = new TrieNode[FANOUT];
         isEnd = false;
     }
 }

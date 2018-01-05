@@ -2,7 +2,9 @@ package C_FaceBook;
 
 public class TTT117 {
 	public void connect(TreeLinkNode root) {
+		
         while(root != null){
+        	
             TreeLinkNode dummy = new TreeLinkNode(0);
             TreeLinkNode curr = dummy;
             while(root != null){

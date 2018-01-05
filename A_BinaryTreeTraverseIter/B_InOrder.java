@@ -3,11 +3,11 @@ import java.util.*;
 
 public class B_InOrder {
 	public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
+        List<Integer> res = new ArrayList<>();
         if(root == null) return res;
-        Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
-    
+        Stack<TreeNode> stack = new Stack<>();
+        
         while(curr != null || !stack.isEmpty()){
             while(curr != null){
                 stack.push(curr);
@@ -15,7 +15,6 @@ public class B_InOrder {
             }
             curr = stack.pop();
             res.add(curr.val);
-            
             curr = curr.right;
         }
         return res;

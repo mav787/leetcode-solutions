@@ -3,19 +3,27 @@ import java.util.*;
 
 public class TTT210My {
 	public int[] findOrder(int numCourses, int[][] prerequisites) {
-        if(prerequisites == null || numCourses <= 0) return new int[0];
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        int[] indegree = new int[numCourses];
         int[] res = new int[numCourses];
+        if(prerequisites == null || prerequisites.length == 0){
+            for(int i = 0; i < res.length; i++){
+                res[i] = i;
+            }
+            return res;
+        }
+        
+        int[] indegree = new int[numCourses];
+        Map<Integer, List<Integer>> map = new HashMap<>();
         
         for(int i = 0; i < prerequisites.length; i++){
-            int prior = prerequisites[i][1];
-            if(!map.containsKey(prior)){
-                map.put(prior, new ArrayList<Integer>());
-            }
+            if(prerequisites[i].length != 2) return res;
+            int first = prerequisites[i][1];
+            int second = prerequisites[i][0];
             
-            map.get(prior).add(prerequisites[i][0]);
-            indegree[prerequisites[i][0]]++;
+            if(!map.containsKey(first)){
+                map.put(first, new ArrayList<Integer>());
+            }
+            map.get(first).add(second);
+            indegree[second]++;
         }
         
         Queue<Integer> queue = new LinkedList<>();
@@ -26,16 +34,17 @@ public class TTT210My {
         }
         
         int curr = 0;
-        
         while(!queue.isEmpty()){
-            int prior = queue.poll();
-            res[curr] = prior;
+            int first = queue.poll();
+            res[curr] = first;
             curr++;
-            if(map.containsKey(prior)){
-                for(int next : map.get(prior)){
-                    indegree[next]--;
-                    if(indegree[next] == 0){
-                        queue.offer(next);
+            
+            if(map.containsKey(first)){
+                List<Integer> neighbors = map.get(first);
+                for(Integer second : neighbors){
+                    indegree[second]--;
+                    if(indegree[second] == 0){
+                        queue.offer(second);
                     }
                 }
             }

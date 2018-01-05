@@ -16,11 +16,12 @@ public class TTT282 {
                 res.add(sb.toString());
             return;
         }
+        
         for(int i = pos; i < num.length(); i++){
             int len = sb.length();
-            if(i != pos && num.charAt(pos) == '0') 
-                break;
-            long cur = Long.parseLong(num.substring(pos, i + 1));
+            
+            if(i != pos && num.charAt(pos) == '0')  break;
+            long cur = Long.valueOf(num.substring(pos, i + 1));	// slice
             if(pos == 0){
                 backtrack(res, sb.append(cur), num, target, i + 1, cur, cur);
                 sb.setLength(len);

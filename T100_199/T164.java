@@ -15,7 +15,7 @@ public class T164 {
             max = Math.max(max, i);
         }
         
-        // the minimum possibale gap, ceiling of the integer division
+        // the minimum possible gap, ceiling of the integer division
         int gap = (int) Math.ceil((double)(max - min)/(nums.length - 1));
         int[] bucketsMIN = new int[nums.length - 1]; // store the min value in that bucket
         int[] bucketsMAX = new int[nums.length - 1]; // store the max value in that bucket

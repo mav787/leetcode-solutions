@@ -2,8 +2,7 @@ package T100_199;
 
 public class T189 {
 	public void rotate(int[] nums, int k) {
-        if(nums == null || nums.length == 0)
-            return;
+        if(nums == null || nums.length == 0) return;
         k = k % nums.length;
         reverse(nums, 0, nums.length - 1);
         reverse(nums, 0, k - 1);
@@ -15,6 +14,7 @@ public class T189 {
             int temp = nums[left];
             nums[left] = nums[right];
             nums[right] = temp;
+            
             left++;
             right--;
         }

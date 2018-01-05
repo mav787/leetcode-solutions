@@ -9,7 +9,7 @@ public class T297 {
             return "";
         Queue<TreeNode> queue = new LinkedList<>();
         StringBuilder sb = new StringBuilder();
-        queue.add(root);
+        queue.offer(root);
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
             if (node == null) {
@@ -17,31 +17,35 @@ public class T297 {
                 continue;
             }
             sb.append(node.val + " ");
-            queue.add(node.left);
-            queue.add(node.right);
+            queue.offer(node.left);
+            queue.offer(node.right);
         }
         return sb.toString().trim();
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        if (data == "") 
-            return null;
+        if(data.length() == 0) return null;
         Queue<TreeNode> queue = new LinkedList<>();
         String[] values = data.split(" ");
-        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
-        queue.add(root);
+        
+        TreeNode root = new TreeNode(Integer.valueOf(values[0]));
+        queue.offer(root);
         for (int i = 1; i < values.length; i++) {
             TreeNode parent = queue.poll();
+            
             if (!values[i].equals("#")) {
-                TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+                TreeNode left = new TreeNode(Integer.valueOf(values[i]));
                 parent.left = left;
-                queue.add(left);
+                queue.offer(left);
             }
-            if (!values[++i].equals("#")) {
-                TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+            
+            i++;
+            
+            if (!values[i].equals("#")) {
+                TreeNode right = new TreeNode(Integer.valueOf(values[i]));
                 parent.right = right;
-                queue.add(right);
+                queue.offer(right);
             }
         }
         return root;

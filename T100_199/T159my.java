@@ -3,35 +3,25 @@ import java.util.*;
 
 public class T159my {
 	public int lengthOfLongestSubstringTwoDistinct(String s) {
-        // sliding window
-        if(s == null)
-            return -1;
-        if(s.length() < 3)
-            return s.length();
-        int res = 0, start = 0, end = 0;
+    	if(s == null || s.length() == 0) return 0;
+        int left = 0, right = 0, res = 0;
         Map<Character, Integer> map = new HashMap<>();
-        while(end < s.length()){
-            if(map.size() < 3){
-                if(!map.containsKey(s.charAt(end))){
-                    map.put(s.charAt(end), 1);
-                }
-                else{
-                    map.put(s.charAt(end), map.get(s.charAt(end)) + 1);
-                }
-                end++;
+        while(right < s.length()){
+            char cr = s.charAt(right);
+            if(map.size() <= 2){
+                map.put(cr, map.getOrDefault(cr, 0) + 1);
+                right++;
             }
-                
+            // illegal
+
             while(map.size() > 2){
-                if(map.containsKey(s.charAt(start))){
-                    map.put(s.charAt(start), map.get(s.charAt(start)) - 1);
-                }
-                if(map.get(s.charAt(start)) == 0){
-                    map.remove(s.charAt(start));
-                }
-                start++;
+                char cl = s.charAt(left);
+                map.put(cl, map.get(cl) - 1);
+                if(map.get(cl) == 0) map.remove(cl);
+                left++;
             }
-            res = Math.max(res, end - start);
-        }
-        return res;
+            res = Math.max(res, right - left);
+		}
+		return res;
     }
 }

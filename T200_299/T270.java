@@ -2,24 +2,26 @@ package T200_299;
 
 public class T270 {
 	public int closestValue(TreeNode root, double target) {
-        if(root == null)
-            return Integer.MAX_VALUE;
-        TreeNode curr = root, res = root;
-        double minErr = Double.MAX_VALUE;
+        if(root == null) return Integer.MIN_VALUE;
+        TreeNode curr = root;
+        double minErr = Math.abs(root.val - target);
+        int res = root.val;
         while(curr != null){
-            double err = Math.abs(curr.val - target);
-            if(err < minErr){
-                minErr = err;
-                res = curr;
+            if(Math.abs(curr.val - target) < minErr){
+                minErr = Math.abs(curr.val - target);
+                res = curr.val;
             }
             
-            if(curr.val < target)
-                curr = curr.right;
-            else if(curr.val > target)
+            if(curr.val > target){
                 curr = curr.left;
-            else
+            }
+            else if(curr.val < target){
+                curr = curr.right;
+            }
+            else{
                 return curr.val;
+            }
         }
-        return res.val;
+        return res;
     }
 }

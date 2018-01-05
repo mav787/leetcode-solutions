@@ -1,34 +1,33 @@
 package C_FaceBook;
 
 public class TTT273 {
-	private final String[] LESS_THAN_20 = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
-    private final String[] TENS = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-    private final String[] THOUSANDS = {"", "Thousand", "Million", "Billion"};
+	private String[] elements = {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    private String[] tens = {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    private String[] thousands = {"", "Thousand", "Million", "Billion"};
     
     public String numberToWords(int num) {
         if (num == 0) return "Zero";
     
-        int i = 0;
-        String words = "";
         
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
         while (num > 0) {
             if (num % 1000 != 0)
-        	    words = helper(num % 1000) +THOUSANDS[i] + " " + words;
+            	sb.insert(0, " ").insert(0, thousands[i]).insert(0, dfs(num % 1000));
         	num /= 1000;
         	i++;
         }
-        
-        return words.trim();
+        return sb.toString().trim();
     }
     
-    private String helper(int num) {
+    private String dfs(int num) {
         if (num == 0)
             return "";
         else if (num < 20)
-            return LESS_THAN_20[num] + " ";
+            return elements[num] + " ";
         else if (num < 100)
-            return TENS[num / 10] + " " + helper(num % 10);
+            return tens[num / 10] + " " + dfs(num % 10);
         else
-            return LESS_THAN_20[num / 100] + " Hundred " + helper(num % 100);
+            return elements[num / 100] + " Hundred " + dfs(num % 100);
     }
 }

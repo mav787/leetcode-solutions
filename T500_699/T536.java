@@ -4,24 +4,25 @@ public class T536 {
 	public TreeNode str2tree(String s) {
         if (s == null || s.length() == 0) 
             return null;
-        int firstParen = s.indexOf("(");
-        if(firstParen == -1){
+        int first = s.indexOf("(");
+        if(first == -1){
             return new TreeNode(Integer.parseInt(s));
         }
-        int val = Integer.parseInt(s.substring(0, firstParen));
+        int val = Integer.parseInt(s.substring(0, first));
         TreeNode root = new TreeNode(val);
-        int start = firstParen, leftParenCount = 0;
+        int start = first, open = 0;
         for (int i = start; i < s.length(); i++) {
             if (s.charAt(i) == '(') 
-                leftParenCount++;
+                open++;
             else if (s.charAt(i) == ')') 
-                leftParenCount--;
-            if (leftParenCount == 0 && start == firstParen) {
+                open--;
+            if (open == 0 && start == first) {
                 root.left = str2tree(s.substring(start + 1, i)); 
-                start = i+1;
+                start = i + 1;
             }
-            else if (leftParenCount == 0) 
-                root.right = str2tree(s.substring(start + 1, i));
+            else if (open == 0) {
+            	root.right = str2tree(s.substring(start + 1, i));
+            }
         }
         return root;
     }

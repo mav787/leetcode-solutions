@@ -6,27 +6,27 @@ public class TT65 {
             return false;
             
         s = s.trim();
-        boolean pointSeen = false;
-        boolean eSeen = false;
-        boolean numberSeen = false;
-        boolean numberAfterE = true;
-        for(int i=0; i<s.length(); i++) {
-            if('0' <= s.charAt(i) && s.charAt(i) <= '9') {
-                numberSeen = true;
-                numberAfterE = true;
+        boolean hasPoint = false;
+        boolean hasE = false;
+        boolean hasDigit = false;
+        boolean num = true;
+        for(int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+                hasDigit = true;
+                num = true;
             } else if(s.charAt(i) == '.') {
-                if(eSeen || pointSeen) {
+                if(hasE || hasPoint) {
                     return false;
                 }
-                pointSeen = true;
+                hasPoint = true;
             } else if(s.charAt(i) == 'e') {
-                if(eSeen || !numberSeen) {
+                if(hasE || !hasDigit) {
                     return false;
                 }
-                numberAfterE = false;
-                eSeen = true;
+                num = false;
+                hasE = true;
             } else if(s.charAt(i) == '-' || s.charAt(i) == '+') {
-                if(i != 0 && s.charAt(i-1) != 'e') {
+                if(i != 0 && s.charAt(i - 1) != 'e') {
                     return false;
                 }
             } else {
@@ -34,6 +34,6 @@ public class TT65 {
             }
         }
         
-        return numberSeen && numberAfterE;
+        return hasDigit && num;
     }
 }

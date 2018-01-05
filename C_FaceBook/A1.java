@@ -4,9 +4,7 @@ import java.util.*;
 public class A1 {
 	public int[] minMax(int[] nums){
 	    if(nums == null || nums.length == 0) return new int[2];
-
-	    int low = 0, high = nums.length - 1;
-	    return minMax(nums, low, high); 
+	    return minMax(nums, 0, nums.length - 1); 
 
 	}
 

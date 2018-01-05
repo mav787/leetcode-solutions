@@ -2,40 +2,27 @@ package T1_99;
 
 public class TT79 {
 	public boolean exist(char[][] board, String word) {
-        boolean[][] visited = new boolean[board.length][board[0].length];
-        
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board[i].length; j++){
-                if(search(board, word, i, j, 0, visited)){
-                    return true;
-                }
+        if(board == null || board.length == 0 || board[0] == null || board[0].length == 0) return false;
+        int m = board.length, n = board[0].length;
+        boolean[][] used = new boolean[m][n];
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(exist(board, word, i, j, used, 0)) return true;
             }
         }
-        
         return false;
     }
     
-    private boolean search(char[][]board, String word, int i, int j, int index, boolean[][] visited){
-        if(index == word.length()){
-            return true;
-        }
-        
-        if(i >= board.length || i < 0 || j >= board[i].length || j < 0 || board[i][j] != word.charAt(index) || visited[i][j]){
+    private boolean exist(char[][] board, String word, int i, int j, boolean[][] used, int index){
+        if(index == word.length()) return true;
+        if(i < 0 || i >= board.length || j < 0 || j >= board[i].length || used[i][j] || board[i][j] != word.charAt(index))
             return false;
-        }
-        
-        visited[i][j] = true;
-        
-        if(search(board, word, i - 1, j, index + 1, visited) || 
-           search(board, word, i + 1, j, index + 1, visited) ||
-           search(board, word, i, j - 1, index + 1, visited) || 
-           search(board, word, i, j + 1, index + 1, visited)){
-           
-            return true;
-        }
-        
-        visited[i][j] = false;
-        
+        used[i][j] = true;
+        if(     exist(board, word, i - 1, j, used, index + 1) 
+          ||    exist(board, word, i + 1, j, used, index + 1)
+          ||    exist(board, word, i, j - 1, used, index + 1)
+          ||    exist(board, word, i, j + 1, used, index + 1)) return true;
+        used[i][j] = false;
         return false;
     }
 }

@@ -6,11 +6,10 @@ public class TT98 {
     }
     
     private boolean isValidBST(TreeNode root, long min, long max){
-        if(root == null)
-            return true;
-        long rootvalue = (long)root.val;
-        if(rootvalue <= min || rootvalue >= max)
-            return false;
-        return isValidBST(root.left, min, rootvalue) && isValidBST(root.right, rootvalue, max);
+        if(root == null) return true;
+        return isValidBST(root.left, min, root.val)
+            && isValidBST(root.right, root.val, max)
+            && root.val > min
+            && root.val < max;
     }
 }

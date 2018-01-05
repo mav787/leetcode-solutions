@@ -3,9 +3,9 @@ import java.util.*;
 
 public class T269 {
 	public String alienOrder(String[] words) {
-        List<Set<Integer>> adj = new ArrayList<>();
+        List<Set<Integer>> neighbors = new ArrayList<>();
         for (int i = 0; i < 26; i++) {
-            adj.add(new HashSet<Integer>());
+            neighbors.add(new HashSet<Integer>());
         }
         int[] degree = new int[26];
         Arrays.fill(degree, -1);
@@ -22,8 +22,8 @@ public class T269 {
                 for (int j = 0; j < len; j++) {
                     int c1 = w1.charAt(j) - 'a', c2 = w2.charAt(j) - 'a';
                     if (c1 != c2) {
-                        if (!adj.get(c1).contains(c2)) {
-                            adj.get(c1).add(c2);
+                        if (!neighbors.get(c1).contains(c2)) {
+                            neighbors.get(c1).add(c2);
                             degree[c2]++;
                         }
                         break;
@@ -35,21 +35,21 @@ public class T269 {
             }
         }
 
-        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<>();
         for (int i = 0; i < degree.length; i++) {
             if (degree[i] == 0) {
-                q.add(i);       
+                queue.add(i);       
             }
         }
 
         StringBuilder sb = new StringBuilder();
-        while (!q.isEmpty()) {
-            int i = q.poll();
-            sb.append((char) ('a'  + i));
-            for (int j : adj.get(i)) {
+        while (!queue.isEmpty()) {
+            int i = queue.poll();
+            sb.append((char) (i + 'a'));
+            for (int j : neighbors.get(i)) {
                 degree[j]--;
                 if (degree[j] == 0) {
-                    q.add(j);        
+                    queue.add(j);        
                 }
             }
         }
@@ -59,7 +59,6 @@ public class T269 {
                 return "";
             }
         }
-
         return sb.toString();
     }
 }

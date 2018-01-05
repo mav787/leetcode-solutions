@@ -2,18 +2,19 @@ package T100_199;
 
 public class T106 {
 	public TreeNode buildTree(int[] inorder, int[] postorder) {
-        if(inorder == null || postorder == null || inorder.length != postorder.length)
-            return null;
+        if(inorder == null || postorder == null || inorder.length != postorder.length){
+        	return null;
+        }
         return buildTree(inorder, postorder, postorder.length - 1, 0, inorder.length - 1);
     }
     
     private TreeNode buildTree(int[] inorder, int[] postorder, int postcurr, int instart, int inend){
-        if(postcurr < 0 || instart > inend)
-            return null;
-        TreeNode root = new TreeNode(postorder[postcurr]);
+        if(postcurr < 0 || instart > inend) return null;
+        int rootval = postorder[postcurr];
+        TreeNode root = new TreeNode(rootval);
         int incurr = 0;
         for(int i = instart; i <= inend; i++){
-            if(inorder[i] == postorder[postcurr]){
+            if(inorder[i] == rootval){
                 incurr = i;
                 break;
             }

@@ -16,10 +16,10 @@ public class C_PostOrder {
             }
             
             curr = stack.peek();
-            if(curr.right != null && curr.right != pre){
+            if(curr.right != null && curr.right != pre){		// going down
             	curr = curr.right;
             }
-            else{
+            else{												// going up
                 curr = stack.pop();
                 res.add(curr.val);
                 pre = curr;
