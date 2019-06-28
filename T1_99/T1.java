@@ -4,16 +4,18 @@ import java.util.*;
 
 public class T1 {
 	public int[] twoSum(int[] nums, int target) {
-        int[] result = new int[2];
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i < nums.length; i++) {
-            if (map.containsKey(target - nums[i])) {
-                result[1] = i;
-                result[0] = map.get(target - nums[i]) - 1;
-                return result;
+		int[] res = new int[2];
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        for(int i = 0; i < nums.length; i++){
+            
+            if(map.containsKey(target - nums[i])){
+                res[0] = map.get(target - nums[i]);
+                res[1] = i;
+                return res;
             }
-            map.put(nums[i], i + 1);
+            map.put(nums[i], i);
         }
-        return result;
+        return res;
     }
 }
