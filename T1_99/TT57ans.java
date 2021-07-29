@@ -3,8 +3,9 @@ import java.util.*;
 
 public class TT57ans {
 	public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        if(intervals == null || newInterval == null)
-            return intervals;
+	    if(intervals == null || newInterval == null){
+	        return intervals;
+	    }
 	    List<Interval> result = new LinkedList<>();
 	    int i = 0;
 	    // add all the intervals ending before newInterval starts
