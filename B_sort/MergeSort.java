@@ -36,7 +36,7 @@ public class MergeSort {
 	}
 	
 	public static void main(String[] args){
-        int[] a = {2, 6, 3, 5, 1, 2, 5, 8, 5, 6};
+        int[] a = {2, 6, 3, 5, 1, 2, 5, 8, 5, 6, 100};
         System.out.println(Arrays.toString(a));
         MergeSort obj = new MergeSort();
         obj.mergeSort(a);
