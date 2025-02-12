@@ -2,38 +2,61 @@ package T200_299;
 import java.util.*;
 
 public class T227 {
-	public int calculate(String s) {
+    public int calculate(String s) {
+        s = s.trim();
         if(s == null || s.length() == 0)
             return 0;
-        int len = s.length();
-        Stack<Integer> stack = new Stack<Integer>();
-        int num = 0;
+        char[] ca = s.toCharArray();
+        Stack<Integer> stack = new Stack<>();
+        int curr = 0;
+        // sign remembers the previous operator
         char sign = '+';
-        for(int i = 0 ; i < len; i++){
-            if(Character.isDigit(s.charAt(i))){
-                num = num * 10 + s.charAt(i) - '0';
+        for(int i = 0 ; i < ca.length; i++){
+            char c = ca[i];
+            if(c == ' ') {
+                continue;
             }
-            if((!Character.isDigit(s.charAt(i)) && s.charAt(i) != ' ' || i == len - 1)){
+            if(Character.isDigit(c)){
+                curr = curr * 10 + c - '0';
+            }
+
+            else{
+                // sign remembers the previous operator
                 if(sign == '-'){
-                    stack.push(-num);
+                    stack.push(-curr);
                 }
-                if(sign == '+'){
-                    stack.push(num);
+                else if(sign == '+'){
+                    stack.push(curr);
                 }
-                if(sign == '*'){
-                    stack.push(stack.pop() * num);
+                else if(sign == '*'){
+                    stack.push(stack.pop() * curr);
                 }
-                if(sign == '/'){
-                    stack.push(stack.pop() / num);
+                else if(sign == '/'){
+                    stack.push(stack.pop() / curr);
                 }
-                sign = s.charAt(i);
-                num = 0;
+                // update the current sign
+                sign = c;
+                curr = 0;
             }
         }
-    
+
+        // last time
+        if(sign == '-'){
+            stack.push(-curr);
+        }
+        else if(sign == '+'){
+            stack.push(curr);
+        }
+        else if(sign == '*'){
+            stack.push(stack.pop() * curr);
+        }
+        else if(sign == '/'){
+            stack.push(stack.pop() / curr);
+        }
+
         int res = 0;
-        for(int i:stack){
-            res += i;
+        while(!stack.isEmpty()){
+            res += stack.pop();
         }
         return res;
     }

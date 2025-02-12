@@ -27,6 +27,7 @@ public class QuickSort {
 	    	}
 	    	
 	    	swap(arr, curr, right);
+
 	    	quickSort(arr, left, curr - 1);
 	    	quickSort(arr, curr + 1, right);
     }

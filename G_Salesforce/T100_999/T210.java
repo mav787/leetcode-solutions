@@ -1,7 +1,7 @@
-package T200_299;
+package G_Salesforce.T100_999;
 import java.util.*;
 
-public class T210My {
+public class T210 {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         int[] inDegree = new int[numCourses];
         Map<Integer, List<Integer>> outEdges = new HashMap<>();
@@ -12,7 +12,7 @@ public class T210My {
 
             // b -> a
             inDegree[a]++;
-            List<Integer> edges = outEdges.getOrDefault(b, new ArrayList<Integer>());
+            List<Integer> edges = outEdges.getOrDefault(b, new ArrayList<>());
             edges.add(a);
             outEdges.put(b, edges);
         }

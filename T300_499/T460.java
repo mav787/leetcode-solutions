@@ -1,35 +1,48 @@
 package T300_499;
 import java.util.*;
 public class T460 {
-	private Node head = null;
-    private int cap = 0;
-    private HashMap<Integer, Integer> valueHash = null;
-    private HashMap<Integer, Node> nodeHash = null;
+
+    class Node {
+        public int count;
+        public LinkedHashSet<Integer> keys;
+        public Node prev, next;
+
+        public Node(int count) {
+            this.count = count;
+            keys = new LinkedHashSet<>();
+            prev = next = null;
+        }
+    }
+
+	private Node head;
+    private int cap;
+    private HashMap<Integer, Integer> freqMap;
+    private HashMap<Integer, Node> map;
     
     public T460(int capacity) {
         this.cap = capacity;
-        valueHash = new HashMap<Integer, Integer>();
-        nodeHash = new HashMap<Integer, Node>();
+        freqMap = new HashMap<>();
+        map = new HashMap<>();
     }
     
     public int get(int key) {
-        if (valueHash.containsKey(key)) {
+        if (freqMap.containsKey(key)) {
             increaseCount(key);
-            return valueHash.get(key);
+            return freqMap.get(key);
         }
         return -1;
     }
     
     public void put(int key, int value) {
         if ( cap == 0 ) return;
-        if (valueHash.containsKey(key)) {
-            valueHash.put(key, value);
+        if (freqMap.containsKey(key)) {
+            freqMap.put(key, value);
         } else {
-            if (valueHash.size() < cap) {
-                valueHash.put(key, value);
+            if (freqMap.size() < cap) {
+                freqMap.put(key, value);
             } else {
                 removeOld();
-                valueHash.put(key, value);
+                freqMap.put(key, value);
             }
             addToHead(key);
         }
@@ -49,21 +62,21 @@ public class T460 {
         } else {
             head.keys.add(key);
         }
-        nodeHash.put(key, head);      
+        map.put(key, head);
     }
     
     private void increaseCount(int key) {
-        Node node = nodeHash.get(key);
+        Node node = map.get(key);
         node.keys.remove(key);
         
         if (node.next == null) {
-            node.next = new Node(node.count+1);
+            node.next = new Node(node.count + 1);
             node.next.prev = node;
             node.next.keys.add(key);
-        } else if (node.next.count == node.count+1) {
+        } else if (node.next.count == node.count + 1) {
             node.next.keys.add(key);
         } else {
-            Node tmp = new Node(node.count+1);
+            Node tmp = new Node(node.count + 1);
             tmp.keys.add(key);
             tmp.prev = node;
             tmp.next = node.next;
@@ -71,7 +84,7 @@ public class T460 {
             node.next = tmp;
         }
 
-        nodeHash.put(key, node.next);
+        map.put(key, node.next);
         if (node.keys.size() == 0) remove(node);
     }
     
@@ -84,8 +97,8 @@ public class T460 {
         }
         head.keys.remove(old);
         if (head.keys.size() == 0) remove(head);
-        nodeHash.remove(old);
-        valueHash.remove(old);
+        map.remove(old);
+        freqMap.remove(old);
     }
     
     private void remove(Node node) {
@@ -99,15 +112,5 @@ public class T460 {
         }
     }
     
-    class Node {
-        public int count = 0;
-        public LinkedHashSet<Integer> keys = null;
-        public Node prev = null, next = null;
-        
-        public Node(int count) {
-            this.count = count;
-            keys = new LinkedHashSet<Integer>();
-            prev = next = null;
-        }
-    }
+
 }

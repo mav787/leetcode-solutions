@@ -3,19 +3,16 @@ package T1_99;
 import java.util.*;
 
 public class T1 {
-	public int[] twoSum(int[] nums, int target) {
-		int[] res = new int[2];
+    public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
-        
         for(int i = 0; i < nums.length; i++){
-            
             if(map.containsKey(target - nums[i])){
-                res[0] = map.get(target - nums[i]);
-                res[1] = i;
-                return res;
+                return new int[]{i, map.get(target - nums[i])};
             }
-            map.put(nums[i], i);
+            else{
+                map.put(nums[i], i);
+            }
         }
-        return res;
+        return new int[2];
     }
 }

@@ -1,11 +1,11 @@
-package D_Microsoft;
+package D_Microsoft.T1_9;
 
-public class T5ii {
-	public String longestPalindrome(String s) {
+public class T5II {
+    public String longestPalindrome(String s) {
         if(s == null || s.length() < 2) return s;
         int maxLen = 1;
         int index = 0;
-        
+
         for(int i = 0; i < s.length(); i++){
             int len1 = extend(s, i, i);
             int len2 = extend(s, i, i + 1);
@@ -17,7 +17,7 @@ public class T5ii {
         }
         return s.substring(index - (maxLen - 1) / 2, index + maxLen / 2 + 1);
     }
-    
+
     private int extend(String s, int left, int right){
         if(left < 0 || right >= s.length()) return -1;
         while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)){

@@ -1,4 +1,4 @@
-package D_Microsoft;
+package D_Microsoft.T1_9;
 import java.util.*;
 public class T1 {
 	public int[] twoSum(int[] nums, int target) {
