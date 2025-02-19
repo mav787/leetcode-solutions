@@ -15,6 +15,7 @@ public class B_InOrder {
             }
             curr = stack.pop();
             res.add(curr.val);
+
             curr = curr.right;
         }
         return res;

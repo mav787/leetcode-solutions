@@ -10,7 +10,9 @@ public class D_PostOrder_Cheating {
 		stack.push(root);
 		while (!stack.isEmpty()) {
 			TreeNode cur = stack.pop();
+
 			res.addFirst(cur.val);
+
 			if (cur.left != null) {
 				stack.push(cur.left);
 			}
