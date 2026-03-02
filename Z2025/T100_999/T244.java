@@ -15,7 +15,7 @@ public class T244 {
     }
 
     public int shortest(String word1, String word2) {
-        List l1 = map.get(word1), l2 = map.get(word2);
+        List<Integer> l1 = map.get(word1), l2 = map.get(word2);
         return helper(l1, l2);
     }
 
