@@ -20,9 +20,9 @@ public class T109 {
         if(left > right){
             return null;
         }
-        if(left == right){
-            return new TreeNode(list.get(left));
-        }
+//        if(left == right){
+//            return new TreeNode(list.get(left));
+//        }
 
         int mid = left + (right - left) / 2;
         TreeNode root = new TreeNode(list.get(mid));
