@@ -5,28 +5,25 @@ public class T328 {
         ListNode oddDummy = new ListNode(0);
         ListNode evenDummy = new ListNode(0);
 
-        if(head == null){
-            return head;
-        }
+        ListNode oddCurr = oddDummy, evenCurr = evenDummy;
 
         boolean isOdd = true;
-        ListNode currOdd = oddDummy, currEven = evenDummy;
-        ListNode curr = head;
-        while(curr != null){
+        while(head != null){
             if(isOdd){
-                currOdd.next = curr;
-                currOdd = curr;
+                oddCurr.next = head;
+                oddCurr = oddCurr.next;
             }
             else{
-                currEven.next = curr;
-                currEven = curr;
+                evenCurr.next = head;
+                evenCurr = evenCurr.next;
             }
-            curr = curr.next;
+
+            head = head.next;
             isOdd = !isOdd;
         }
 
-        currOdd.next = evenDummy.next;
-        currEven.next = null;
+        evenCurr.next = null;
+        oddCurr.next = evenDummy.next;
         return oddDummy.next;
     }
 }
