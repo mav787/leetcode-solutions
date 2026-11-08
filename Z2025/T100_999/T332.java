@@ -5,7 +5,7 @@ import java.util.*;
 public class T332 {
     public List<String> findItinerary(List<List<String>> tickets) {
         List<String> res = new LinkedList<>();
-        if(tickets == null || tickets.size() == 0){
+        if(tickets == null || tickets.isEmpty()){
             return res;
         }
         Map<String, Queue<String>> map = new HashMap<>();
