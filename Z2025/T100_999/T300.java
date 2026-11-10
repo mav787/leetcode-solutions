@@ -23,4 +23,46 @@ public class T300 {
 
         return res;
     }
+
+    //  ========================================================================
+    public int lengthOfLIS2(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        if(nums.length == 0){
+            return 0;
+        }
+
+        list.add(nums[0]);
+
+        for(int i = 1; i < nums.length; i++){
+            helper(nums[i], list);
+        }
+
+        return list.size();
+    }
+
+    private void helper(int target, List<Integer> list){
+        // find first i that list.get(i) >= target
+
+        int left = 0, right = list.size() - 1;
+
+        while(left + 1 < right){
+            int mid = left + (right - left) / 2;
+            if(list.get(mid) >= target){
+                right = mid;
+            }
+            else{
+                left = mid;
+            }
+        }
+
+        if(list.get(left) >= target){
+            list.set(left, target);
+        }
+        else if(list.get(right) >= target){
+            list.set(right, target);
+        }
+        else{
+            list.add(target);
+        }
+    }
 }
