@@ -1,6 +1,4 @@
-package Z2026;
-
-import java.util.*;
+package Z2026.Z0;
 
 public class T1281 {
     class Solution {

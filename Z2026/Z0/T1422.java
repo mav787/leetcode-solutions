@@ -1,4 +1,4 @@
-package Z2026;
+package Z2026.Z0;
 
 public class T1422 {
     class Solution {
