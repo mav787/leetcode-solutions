@@ -11,7 +11,6 @@ public class T409 {
             }
 
             int res = 0;
-            int max = 0;
 
             boolean hasOdd = false;
 
